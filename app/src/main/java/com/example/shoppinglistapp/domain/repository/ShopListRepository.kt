@@ -3,7 +3,7 @@ package com.example.shoppinglistapp.domain.repository
 import androidx.lifecycle.LiveData
 import com.example.shoppinglistapp.domain.entity.ShopItemEntity
 
-interface ShopItemRepository {
+interface ShopListRepository {
 
     fun addShopItem(shopItemEntity: ShopItemEntity)
 
