@@ -1,13 +1,13 @@
 package com.example.shoppinglistapp.domain.usecases
 
 import com.example.shoppinglistapp.domain.entity.ShopItemEntity
-import com.example.shoppinglistapp.domain.repository.ShopItemRepository
+import com.example.shoppinglistapp.domain.repository.ShopListRepository
 
 class DeleteShopItemUseCases(
-    private val shopItemRepository: ShopItemRepository
+    private val shopListRepository: ShopListRepository
 ) {
 
     operator fun invoke(shopItemEntity: ShopItemEntity) {
-        shopItemRepository.deleteShopItem(shopItemEntity)
+        shopListRepository.deleteShopItem(shopItemEntity)
     }
 }

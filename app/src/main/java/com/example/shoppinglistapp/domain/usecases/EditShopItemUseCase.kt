@@ -1,13 +1,13 @@
 package com.example.shoppinglistapp.domain.usecases
 
 import com.example.shoppinglistapp.domain.entity.ShopItemEntity
-import com.example.shoppinglistapp.domain.repository.ShopItemRepository
+import com.example.shoppinglistapp.domain.repository.ShopListRepository
 
 class EditShopItemUseCase(
-    private val shopItemRepository: ShopItemRepository
+    private val shopListRepository: ShopListRepository
 ) {
 
     operator fun invoke(shopItemEntity: ShopItemEntity) {
-        shopItemRepository.editShopItem(shopItemEntity)
+        shopListRepository.editShopItem(shopItemEntity)
     }
 }
