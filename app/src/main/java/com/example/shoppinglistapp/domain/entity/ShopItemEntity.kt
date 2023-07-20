@@ -1,0 +1,12 @@
+package com.example.shoppinglistapp.domain.entity
+
+data class ShopItemEntity(
+    var id: Int = UNDEFINED_ID,
+    val name: String,
+    val count: Double,
+    val enabled: Boolean
+) {
+    companion object {
+        const val UNDEFINED_ID = 0
+    }
+}
