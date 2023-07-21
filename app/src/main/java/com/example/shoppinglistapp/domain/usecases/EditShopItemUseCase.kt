@@ -7,7 +7,7 @@ class EditShopItemUseCase(
     private val shopListRepository: ShopListRepository
 ) {
 
-    operator fun invoke(shopItemEntity: ShopItemEntity) {
+    suspend operator fun invoke(shopItemEntity: ShopItemEntity) {
         shopListRepository.editShopItem(shopItemEntity)
     }
 }

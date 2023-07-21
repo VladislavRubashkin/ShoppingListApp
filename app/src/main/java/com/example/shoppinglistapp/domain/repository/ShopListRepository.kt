@@ -5,13 +5,13 @@ import com.example.shoppinglistapp.domain.entity.ShopItemEntity
 
 interface ShopListRepository {
 
-    fun addShopItem(shopItemEntity: ShopItemEntity)
+    suspend fun addShopItem(shopItemEntity: ShopItemEntity)
 
-    fun deleteShopItem(shopItemEntity: ShopItemEntity)
+    suspend fun deleteShopItem(shopItemEntity: ShopItemEntity)
 
-    fun editShopItem(shopItemEntity: ShopItemEntity)
+    suspend fun editShopItem(shopItemEntity: ShopItemEntity)
 
-    fun getShopItem(shopItemId: Int): ShopItemEntity
+    suspend fun getShopItem(shopItemId: Int): ShopItemEntity
 
     fun getShopItemList(): LiveData<List<ShopItemEntity>>
 }
