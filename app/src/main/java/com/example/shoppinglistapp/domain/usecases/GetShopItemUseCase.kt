@@ -7,7 +7,7 @@ class GetShopItemUseCase(
     private val shopListRepository: ShopListRepository
 ) {
 
-    operator fun invoke(shopItemId: Int): ShopItemEntity {
+    suspend operator fun invoke(shopItemId: Int): ShopItemEntity {
         return shopListRepository.getShopItem(shopItemId)
     }
 }

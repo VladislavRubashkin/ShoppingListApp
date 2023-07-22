@@ -16,26 +16,27 @@ class ShopListRepositoryImpl(
     private val shopListDao: ShopListDao = AppDatabase.getInstance(application).shopListDao()
     private val mapper = ShopListMapper()
 
-    override fun addShopItem(shopItemEntity: ShopItemEntity) {
+    override suspend fun addShopItem(shopItemEntity: ShopItemEntity) {
         shopListDao.addShopItem(mapper.mapEntityToDbModel(shopItemEntity))
     }
 
-    override fun deleteShopItem(shopItemEntity: ShopItemEntity) {
+    override suspend fun deleteShopItem(shopItemEntity: ShopItemEntity) {
         shopListDao.deleteShopItem(shopItemEntity.id)
     }
 
-    override fun editShopItem(shopItemEntity: ShopItemEntity) {
+    override suspend fun editShopItem(shopItemEntity: ShopItemEntity) {
         shopListDao.editShopItem(mapper.mapEntityToDbModel(shopItemEntity))
     }
 
-    override fun getShopItem(shopItemId: Int): ShopItemEntity {
+    override suspend fun getShopItem(shopItemId: Int): ShopItemEntity {
         val shopItemDbModel = shopListDao.getShopItem(shopItemId)
         return mapper.mapDbModelToEntity(shopItemDbModel)
     }
 
-    override fun getShopItemList(): LiveData<List<ShopItemEntity>> = MediatorLiveData<List<ShopItemEntity>>().apply {
-        addSource(shopListDao.getListShopItem()) {
-            value = mapper.mapListDbModelToListEntity(it)
+    override fun getShopItemList(): LiveData<List<ShopItemEntity>> =
+        MediatorLiveData<List<ShopItemEntity>>().apply {
+            addSource(shopListDao.getListShopItem()) {
+                value = mapper.mapListDbModelToListEntity(it)
+            }
         }
-    }
 }
