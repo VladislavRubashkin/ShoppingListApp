@@ -7,8 +7,8 @@ import android.os.Bundle
 import com.example.shoppinglistapp.R
 import com.example.shoppinglistapp.databinding.ActivityShopItemBinding
 import com.example.shoppinglistapp.domain.entity.ShopItemEntity
-import com.example.shoppinglistapp.presentation.exeptions.BindingException
-import com.example.shoppinglistapp.presentation.exeptions.InvalidParamIntentException
+import com.example.shoppinglistapp.presentation.exceptions.BindingException
+import com.example.shoppinglistapp.presentation.exceptions.InvalidParamIntentException
 
 class ShopItemActivity : AppCompatActivity(), ShopItemFragment.ScreenCloseListener {
 

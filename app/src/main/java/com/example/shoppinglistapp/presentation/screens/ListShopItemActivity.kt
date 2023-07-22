@@ -6,26 +6,27 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppinglistapp.R
-import com.example.shoppinglistapp.databinding.ActivityMainBinding
-import com.example.shoppinglistapp.presentation.adapters.ShopItemAdapter
-import com.example.shoppinglistapp.presentation.exeptions.BindingException
+import com.example.shoppinglistapp.databinding.ActivityListShopItemBinding
+import com.example.shoppinglistapp.presentation.adapters.ListShopItemAdapter
+import com.example.shoppinglistapp.presentation.exceptions.BindingException
 import com.example.shoppinglistapp.presentation.viewmodels.ListShopItemViewModel
 
 class ListShopItemActivity : AppCompatActivity() {
 
-    private var _binding: ActivityMainBinding? = null
-    private val binding: ActivityMainBinding
-        get() = _binding ?: throw BindingException("ActivityMainBinding == null")
+    private var _binding: ActivityListShopItemBinding? = null
+    private val binding: ActivityListShopItemBinding
+        get() = _binding ?: throw BindingException("ActivityNameShopListBinding == null")
 
     private val viewModel: ListShopItemViewModel by lazy {
         ViewModelProvider(this)[ListShopItemViewModel::class.java]
     }
 
-    private lateinit var shopItemAdapter: ShopItemAdapter
+    private lateinit var listShopItemAdapter: ListShopItemAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityMainBinding.inflate(layoutInflater)
+        _binding = ActivityListShopItemBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         getShopItemList()
@@ -35,7 +36,7 @@ class ListShopItemActivity : AppCompatActivity() {
 
     private fun getShopItemList() {
         viewModel.listShopItem.observe(this) {
-            shopItemAdapter.submitList(it)
+            listShopItemAdapter.submitList(it)
         }
     }
 
@@ -47,14 +48,14 @@ class ListShopItemActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerView() {
-        shopItemAdapter = ShopItemAdapter()
+        listShopItemAdapter = ListShopItemAdapter()
         with(binding) {
-            rcViewShopItem.adapter = shopItemAdapter
+            rcViewShopItem.adapter = listShopItemAdapter
             rcViewShopItem.recycledViewPool.setMaxRecycledViews(
-                R.layout.shop_item_enabled, ShopItemAdapter.RECYCLER_VIEW_POOL
+                R.layout.shop_item_enabled, ListShopItemAdapter.RECYCLER_VIEW_POOL
             )
             rcViewShopItem.recycledViewPool.setMaxRecycledViews(
-                R.layout.shop_item_disabled, ShopItemAdapter.RECYCLER_VIEW_POOL
+                R.layout.shop_item_disabled, ListShopItemAdapter.RECYCLER_VIEW_POOL
             )
         }
         setupClickListener()
@@ -63,14 +64,14 @@ class ListShopItemActivity : AppCompatActivity() {
     }
 
     private fun setupClickListener() {
-        shopItemAdapter.onShopItemClickListener = {
+        listShopItemAdapter.onShopItemClickListener = {
             val intent = ShopItemActivity.newIntentEditItem(this, it.id)
             startActivity(intent)
         }
     }
 
     private fun setupLongClickListener() {
-        shopItemAdapter.onShopItemLongClickListener = {
+        listShopItemAdapter.onShopItemLongClickListener = {
             viewModel.editShopItem(it)
         }
     }
@@ -89,7 +90,7 @@ class ListShopItemActivity : AppCompatActivity() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val shopItem = shopItemAdapter.currentList[viewHolder.adapterPosition]
+                val shopItem = listShopItemAdapter.currentList[viewHolder.adapterPosition]
                 viewModel.deleteShopItem(shopItem)
             }
         }
@@ -97,9 +98,7 @@ class ListShopItemActivity : AppCompatActivity() {
         itemTouchHelper.attachToRecyclerView(rcView)
     }
 
-    //    override fun screenClose() {
-//        supportFragmentManager.popBackStack()
-//    }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null

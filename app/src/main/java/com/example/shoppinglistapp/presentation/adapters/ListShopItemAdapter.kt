@@ -11,12 +11,12 @@ import com.example.shoppinglistapp.databinding.ShopItemDisabledBinding
 import com.example.shoppinglistapp.databinding.ShopItemEnabledBinding
 import com.example.shoppinglistapp.domain.entity.ShopItemEntity
 
-class ShopItemAdapter: ListAdapter<ShopItemEntity, ShopItemViewHolder>(ShopItemDiffUtilCallback()) {
+class ListShopItemAdapter: ListAdapter<ShopItemEntity, ListShopItemViewHolder>(ListShopItemDiffUtilCallback()) {
 
     var onShopItemClickListener: ((ShopItemEntity) -> Unit)? = null
     var onShopItemLongClickListener: ((ShopItemEntity) -> Unit)? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShopItemViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListShopItemViewHolder {
         val layout = when(viewType) {
             VIEW_TYPE_DISABLED -> R.layout.shop_item_disabled
             VIEW_TYPE_ENABLED -> R.layout.shop_item_enabled
@@ -28,10 +28,10 @@ class ShopItemAdapter: ListAdapter<ShopItemEntity, ShopItemViewHolder>(ShopItemD
             parent,
             false
         )
-        return ShopItemViewHolder(binding)
+        return ListShopItemViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ShopItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ListShopItemViewHolder, position: Int) {
         val shopItem = getItem(position)
         val binding = holder.binding
         binding.root.setOnClickListener {

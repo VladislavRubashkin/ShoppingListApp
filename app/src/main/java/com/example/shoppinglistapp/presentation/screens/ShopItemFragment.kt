@@ -12,9 +12,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.shoppinglistapp.R
 import com.example.shoppinglistapp.databinding.FragmentShopItemBinding
 import com.example.shoppinglistapp.domain.entity.ShopItemEntity
-import com.example.shoppinglistapp.presentation.exeptions.BindingException
-import com.example.shoppinglistapp.presentation.exeptions.ImplementUseInterfaceException
-import com.example.shoppinglistapp.presentation.exeptions.InvalidArgsException
+import com.example.shoppinglistapp.presentation.exceptions.BindingException
+import com.example.shoppinglistapp.presentation.exceptions.ImplementUseInterfaceException
+import com.example.shoppinglistapp.presentation.exceptions.InvalidArgsException
 import com.example.shoppinglistapp.presentation.viewmodels.ShopItemViewModel
 
 class ShopItemFragment : Fragment() {

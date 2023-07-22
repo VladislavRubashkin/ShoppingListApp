@@ -1,4 +1,4 @@
-package com.example.shoppinglistapp.presentation.exeptions
+package com.example.shoppinglistapp.presentation.exceptions
 
 class InvalidParamIntentException (override val message: String) : RuntimeException(message) {
 }
