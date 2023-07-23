@@ -1,6 +1,7 @@
 package com.example.shoppinglistapp.presentation.adapters
 
 
+import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -10,14 +11,17 @@ import com.example.shoppinglistapp.R
 import com.example.shoppinglistapp.databinding.ShopItemDisabledBinding
 import com.example.shoppinglistapp.databinding.ShopItemEnabledBinding
 import com.example.shoppinglistapp.domain.entity.ShopItemEntity
+import com.example.shoppinglistapp.presentation.utils.ChangeTextSize
 
-class ListShopItemAdapter: ListAdapter<ShopItemEntity, ListShopItemViewHolder>(ListShopItemDiffUtilCallback()) {
+class ListShopItemAdapter(
+    private val preference: SharedPreferences
+) : ListAdapter<ShopItemEntity, ListShopItemViewHolder>(ListShopItemDiffUtilCallback()) {
 
     var onShopItemClickListener: ((ShopItemEntity) -> Unit)? = null
     var onShopItemLongClickListener: ((ShopItemEntity) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListShopItemViewHolder {
-        val layout = when(viewType) {
+        val layout = when (viewType) {
             VIEW_TYPE_DISABLED -> R.layout.shop_item_disabled
             VIEW_TYPE_ENABLED -> R.layout.shop_item_enabled
             else -> throw RuntimeException("Unknown viewType $viewType")
@@ -41,12 +45,14 @@ class ListShopItemAdapter: ListAdapter<ShopItemEntity, ListShopItemViewHolder>(L
             onShopItemLongClickListener?.invoke(shopItem)
             true
         }
-        when(binding) {
+        when (binding) {
             is ShopItemEnabledBinding -> {
+                ChangeTextSize.setTextSize(binding.tvName, binding.tvCount, preference)
                 binding.tvName.text = shopItem.name
                 binding.tvCount.text = shopItem.count.toString()
             }
             is ShopItemDisabledBinding -> {
+                ChangeTextSize.setTextSize(binding.tvName, binding.tvCount, preference)
                 binding.tvName.text = shopItem.name
                 binding.tvCount.text = shopItem.count.toString()
             }

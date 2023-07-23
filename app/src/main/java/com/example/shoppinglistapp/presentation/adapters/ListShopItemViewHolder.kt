@@ -6,4 +6,5 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ListShopItemViewHolder(
     val binding: ViewDataBinding
-): RecyclerView.ViewHolder(binding.root) {}
+): RecyclerView.ViewHolder(binding.root) {
+}

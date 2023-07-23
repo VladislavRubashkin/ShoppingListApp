@@ -1,8 +1,11 @@
 package com.example.shoppinglistapp.presentation.screens
 
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppinglistapp.R
@@ -22,16 +25,27 @@ class ListShopItemActivity : AppCompatActivity() {
     }
 
     private lateinit var listShopItemAdapter: ListShopItemAdapter
-
+    private lateinit var preference: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityListShopItemBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        initPref()
         getShopItemList()
         addShopItem()
+        setupSettings()
         initRecyclerView()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        recreate()
+    }
+
+    private fun initPref() {
+        preference = PreferenceManager.getDefaultSharedPreferences(this)
     }
 
     private fun getShopItemList() {
@@ -47,8 +61,16 @@ class ListShopItemActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupSettings() {
+        binding.fabSettings.setOnClickListener {
+            Intent(this, SettingsActivity::class.java).apply {
+                startActivity(this)
+            }
+        }
+    }
+
     private fun initRecyclerView() {
-        listShopItemAdapter = ListShopItemAdapter()
+        listShopItemAdapter = ListShopItemAdapter(preference)
         with(binding) {
             rcViewShopItem.adapter = listShopItemAdapter
             rcViewShopItem.recycledViewPool.setMaxRecycledViews(

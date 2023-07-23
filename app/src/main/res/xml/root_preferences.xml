@@ -1,0 +1,34 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <PreferenceCategory
+        android:title="@string/general">
+
+        <ListPreference
+            android:defaultValue="Light"
+            android:entries="@array/theme_array"
+            android:entryValues="@array/theme_in_memory_values"
+            android:key="theme_key"
+            android:title="@string/chose_theme"
+            android:icon="@drawable/ic_theme"
+            android:summary=""
+            app:useSimpleSummaryProvider="true"/>
+    </PreferenceCategory>
+
+
+    <PreferenceCategory
+        android:title="@string/text_settings">
+
+        <ListPreference
+            android:defaultValue="16"
+            android:entries="@array/text_size_array"
+            android:entryValues="@array/text_size_in_memory_values"
+            android:key="text_size_key"
+            android:title="@string/choose_text_size"
+            android:icon="@drawable/ic_text_size"
+            android:summary=""
+            app:useSimpleSummaryProvider="true"/>
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -1,14 +1,17 @@
 package com.example.shoppinglistapp.presentation.screens
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.preference.PreferenceManager
 import com.example.shoppinglistapp.R
 import com.example.shoppinglistapp.databinding.FragmentShopItemBinding
 import com.example.shoppinglistapp.domain.entity.ShopItemEntity
@@ -29,6 +32,7 @@ class ShopItemFragment : Fragment() {
 
     private var screenMode = MODE_UNKNOWN
     private var shopItemId = ShopItemEntity.UNDEFINED_ID
+
     private lateinit var screenCloseListener: ScreenCloseListener
 
     override fun onAttach(context: Context) {
@@ -50,6 +54,7 @@ class ShopItemFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        // setTheme() - до создания view
         _binding = FragmentShopItemBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -146,6 +151,7 @@ class ShopItemFragment : Fragment() {
             shopItemId = args.getInt(SHOP_ITEM_ID, ShopItemEntity.UNDEFINED_ID)
         }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
