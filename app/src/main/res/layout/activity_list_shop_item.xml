@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
+            app:rippleColor="@color/white"
             android:clickable="true"
             android:contentDescription="@string/settings"
             android:focusable="true"
@@ -38,12 +39,12 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
+            app:rippleColor="@color/white"
             android:clickable="true"
             android:contentDescription="@string/add_new_shop_item"
             android:focusable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_add" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

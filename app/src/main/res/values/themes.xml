@@ -13,4 +13,37 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+
+    <attr name="myButtonBackgroundTint" format="color|reference"/>
+    <style name="Theme.MyFloatingActionButton" parent="@style/Widget.MaterialComponents.FloatingActionButton">
+        <item name="backgroundTint">?attr/colorSecondary</item>
+    </style>
+
+    <style name="Theme.ShoppingListDark" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/blue_main_light</item>
+        <item name="colorPrimaryVariant">@color/blue_main_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/blue_main_light</item>
+        <item name="colorSecondaryVariant">@color/blue_main_light</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+    </style>
+
+    <style name="Theme.ShoppingListLight" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/green_main_light</item>
+        <item name="colorPrimaryVariant">@color/green_main_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/green_main_dark</item>
+        <item name="colorSecondaryVariant">@color/green_main_dark</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+    </style>
 </resources>

@@ -11,7 +11,7 @@ import com.example.shoppinglistapp.R
 import com.example.shoppinglistapp.databinding.ShopItemDisabledBinding
 import com.example.shoppinglistapp.databinding.ShopItemEnabledBinding
 import com.example.shoppinglistapp.domain.entity.ShopItemEntity
-import com.example.shoppinglistapp.presentation.utils.ChangeTextSize
+import com.example.shoppinglistapp.presentation.utils.TextSizeChangeObject
 
 class ListShopItemAdapter(
     private val preference: SharedPreferences
@@ -47,12 +47,12 @@ class ListShopItemAdapter(
         }
         when (binding) {
             is ShopItemEnabledBinding -> {
-                ChangeTextSize.setTextSize(binding.tvName, binding.tvCount, preference)
+                TextSizeChangeObject.setTextSize(binding.tvName, binding.tvCount, preference)
                 binding.tvName.text = shopItem.name
                 binding.tvCount.text = shopItem.count.toString()
             }
             is ShopItemDisabledBinding -> {
-                ChangeTextSize.setTextSize(binding.tvName, binding.tvCount, preference)
+                TextSizeChangeObject.setTextSize(binding.tvName, binding.tvCount, preference)
                 binding.tvName.text = shopItem.name
                 binding.tvCount.text = shopItem.count.toString()
             }

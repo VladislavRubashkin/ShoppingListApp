@@ -3,6 +3,7 @@ package com.example.shoppinglistapp.presentation.screens
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
@@ -12,6 +13,7 @@ import com.example.shoppinglistapp.R
 import com.example.shoppinglistapp.databinding.ActivityListShopItemBinding
 import com.example.shoppinglistapp.presentation.adapters.ListShopItemAdapter
 import com.example.shoppinglistapp.presentation.exceptions.BindingException
+import com.example.shoppinglistapp.presentation.utils.ThemeChangeObject
 import com.example.shoppinglistapp.presentation.viewmodels.ListShopItemViewModel
 
 class ListShopItemActivity : AppCompatActivity() {
@@ -25,14 +27,17 @@ class ListShopItemActivity : AppCompatActivity() {
     }
 
     private lateinit var listShopItemAdapter: ListShopItemAdapter
-    private lateinit var preference: SharedPreferences
+    private lateinit var textSizePreference: SharedPreferences
+    private lateinit var themePreference: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityListShopItemBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
         initPref()
+        setTheme(ThemeChangeObject.getSelectedThem(themePreference))
+
+        setContentView(binding.root)
+        Log.d("pref","$themePreference")
         getShopItemList()
         addShopItem()
         setupSettings()
@@ -45,7 +50,8 @@ class ListShopItemActivity : AppCompatActivity() {
     }
 
     private fun initPref() {
-        preference = PreferenceManager.getDefaultSharedPreferences(this)
+        textSizePreference = PreferenceManager.getDefaultSharedPreferences(this)
+        themePreference = PreferenceManager.getDefaultSharedPreferences(this)
     }
 
     private fun getShopItemList() {
@@ -70,7 +76,7 @@ class ListShopItemActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerView() {
-        listShopItemAdapter = ListShopItemAdapter(preference)
+        listShopItemAdapter = ListShopItemAdapter(textSizePreference)
         with(binding) {
             rcViewShopItem.adapter = listShopItemAdapter
             rcViewShopItem.recycledViewPool.setMaxRecycledViews(
@@ -119,7 +125,6 @@ class ListShopItemActivity : AppCompatActivity() {
         val itemTouchHelper = ItemTouchHelper(callback)
         itemTouchHelper.attachToRecyclerView(rcView)
     }
-
 
     override fun onDestroy() {
         super.onDestroy()

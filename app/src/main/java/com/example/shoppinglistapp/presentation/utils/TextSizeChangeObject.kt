@@ -3,7 +3,7 @@ package com.example.shoppinglistapp.presentation.utils
 import android.content.SharedPreferences
 import android.widget.TextView
 
-object ChangeTextSize {
+object TextSizeChangeObject {
 
     private const val DEFAULT_TEXT_SIZE = "16"
 
