@@ -10,5 +10,9 @@
 
     <color name="shop_item_enabled_background">#68B4D8</color>
     <color name="shop_item_disabled_background">#33BB86FC</color>
+    <color name="blue_main_light">#5C5C9A</color>
+    <color name="blue_main_dark">#4A4A7E</color>
+    <color name="green_main_dark">#0B671B</color>
+    <color name="green_main_light">#0EA628</color>
 
 </resources>
