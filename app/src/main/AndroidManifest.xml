@@ -15,7 +15,7 @@
         <activity
             android:name=".presentation.screens.SettingsActivity"
             android:exported="false"
-            android:label="@string/title_activity_settings" />
+            android:label="@string/settings" />
         <activity
             android:name=".presentation.screens.ShopItemActivity"
             android:exported="false" />
