@@ -13,6 +13,7 @@
 - LiveData
 - ViewBinding
 - Git
+- Xml(разметка)
 
 **Зависимости:**
 
