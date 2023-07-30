@@ -15,10 +15,13 @@ import androidx.preference.PreferenceManager
 import com.example.shoppinglistapp.R
 import com.example.shoppinglistapp.databinding.FragmentShopItemBinding
 import com.example.shoppinglistapp.domain.entity.ShopItemEntity
+import com.example.shoppinglistapp.presentation.ShoppingListApplication
 import com.example.shoppinglistapp.presentation.exceptions.BindingException
 import com.example.shoppinglistapp.presentation.exceptions.ImplementUseInterfaceException
 import com.example.shoppinglistapp.presentation.exceptions.InvalidArgsException
 import com.example.shoppinglistapp.presentation.viewmodels.ShopItemViewModel
+import com.example.shoppinglistapp.presentation.viewmodels.ViewModelFactory
+import javax.inject.Inject
 
 class ShopItemFragment : Fragment() {
 
@@ -26,16 +29,25 @@ class ShopItemFragment : Fragment() {
     private val binding: FragmentShopItemBinding
         get() = _binding ?: throw BindingException("FragmentShopItemBinding == null")
 
-    private val viewModel by lazy {
-        ViewModelProvider(this)[ShopItemViewModel::class.java]
-    }
-
     private var screenMode = MODE_UNKNOWN
     private var shopItemId = ShopItemEntity.UNDEFINED_ID
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val viewModel by lazy {
+        ViewModelProvider(this, viewModelFactory)[ShopItemViewModel::class.java]
+    }
+
+    private val component by lazy {
+        (requireActivity().application as ShoppingListApplication).component
+    }
 
     private lateinit var screenCloseListener: ScreenCloseListener
 
     override fun onAttach(context: Context) {
+        component.inject(this)
+
         super.onAttach(context)
         if (context is ScreenCloseListener) {
             screenCloseListener = context

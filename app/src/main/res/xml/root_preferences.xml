@@ -3,22 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-
-    <PreferenceCategory
-        android:title="@string/general">
-
-        <ListPreference
-            android:defaultValue="Light"
-            android:entries="@array/theme_array"
-            android:entryValues="@array/theme_in_memory_values"
-            android:key="theme_key"
-            android:title="@string/chose_theme"
-            android:icon="@drawable/ic_theme_icon"
-            android:summary=""
-            app:useSimpleSummaryProvider="true"/>
-    </PreferenceCategory>
-
-
     <PreferenceCategory
         android:title="@string/text_settings">
 

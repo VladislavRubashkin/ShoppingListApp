@@ -1,26 +1,23 @@
 package com.example.shoppinglistapp.presentation.viewmodels
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.shoppinglistapp.data.repository.ShopListRepositoryImpl
 import com.example.shoppinglistapp.domain.entity.ShopItemEntity
 import com.example.shoppinglistapp.domain.usecases.AddShopItemUseCase
 import com.example.shoppinglistapp.domain.usecases.EditShopItemUseCase
 import com.example.shoppinglistapp.domain.usecases.GetShopItemUseCase
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
-class ShopItemViewModel(
-    application: Application
-) : AndroidViewModel(application) {
+class ShopItemViewModel @Inject constructor(
+    private val getShopItemUseCase: GetShopItemUseCase,
+    private val addShopItemUseCase: AddShopItemUseCase,
+    private val editShopItemUseCase: EditShopItemUseCase
+) : ViewModel() {
 
-    private val repo = ShopListRepositoryImpl(application)
-    private val getShopItemUseCase = GetShopItemUseCase(repo)
-    private val addShopItemUseCase = AddShopItemUseCase(repo)
-    private val editShopItemUseCase = EditShopItemUseCase(repo)
 
     private val _shopItem = MutableLiveData<ShopItemEntity>()
     val shopItem: LiveData<ShopItemEntity>
@@ -41,7 +38,8 @@ class ShopItemViewModel(
 
     fun getShopItem(shopItemId: Int) {
         viewModelScope.launch {
-            _shopItem.value = getShopItemUseCase(shopItemId)
+            val shopItem = getShopItemUseCase(shopItemId)
+            _shopItem.value = shopItem
         }
     }
 

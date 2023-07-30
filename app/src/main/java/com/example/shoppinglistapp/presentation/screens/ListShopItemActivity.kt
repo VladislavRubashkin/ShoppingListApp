@@ -1,9 +1,7 @@
 package com.example.shoppinglistapp.presentation.screens
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
@@ -11,10 +9,12 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppinglistapp.R
 import com.example.shoppinglistapp.databinding.ActivityListShopItemBinding
+import com.example.shoppinglistapp.presentation.ShoppingListApplication
 import com.example.shoppinglistapp.presentation.adapters.ListShopItemAdapter
 import com.example.shoppinglistapp.presentation.exceptions.BindingException
-import com.example.shoppinglistapp.presentation.utils.ThemeChangeObject
 import com.example.shoppinglistapp.presentation.viewmodels.ListShopItemViewModel
+import com.example.shoppinglistapp.presentation.viewmodels.ViewModelFactory
+import javax.inject.Inject
 
 class ListShopItemActivity : AppCompatActivity() {
 
@@ -22,24 +22,30 @@ class ListShopItemActivity : AppCompatActivity() {
     private val binding: ActivityListShopItemBinding
         get() = _binding ?: throw BindingException("ActivityNameShopListBinding == null")
 
-    private val viewModel: ListShopItemViewModel by lazy {
-        ViewModelProvider(this)[ListShopItemViewModel::class.java]
-    }
-
     private lateinit var listShopItemAdapter: ListShopItemAdapter
-    private lateinit var textSizePreference: SharedPreferences
-    private val themePreference by lazy {
+
+    private val textSizePreference by lazy {
         PreferenceManager.getDefaultSharedPreferences(this)
     }
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val viewModel: ListShopItemViewModel by lazy {
+        ViewModelProvider(this, viewModelFactory)[ListShopItemViewModel::class.java]
+    }
+
+    private val component by lazy {
+        (application as ShoppingListApplication).component
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
+
         super.onCreate(savedInstanceState)
         _binding = ActivityListShopItemBinding.inflate(layoutInflater)
-
-        setTheme(ThemeChangeObject.getSelectedThem(themePreference))
-
         setContentView(binding.root)
-        initPref()
+
         getShopItemList()
         addShopItem()
         setupSettings()
@@ -49,11 +55,6 @@ class ListShopItemActivity : AppCompatActivity() {
     override fun onRestart() {
         super.onRestart()
         recreate()
-    }
-
-    private fun initPref() {
-        textSizePreference = PreferenceManager.getDefaultSharedPreferences(this)
-//        themePreference = PreferenceManager.getDefaultSharedPreferences(this)
     }
 
     private fun getShopItemList() {
