@@ -10,10 +10,12 @@
 - Preference
 
 **Дополнительно:**
+- Clean-architecture
+- MVVM
+- XML(верстка)
 - LiveData
 - ViewBinding
 - Git
-- Xml(разметка)
 
 **Зависимости:**
 
