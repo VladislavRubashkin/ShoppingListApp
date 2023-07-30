@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
+
     <PreferenceCategory
         android:title="@string/general">
 
@@ -12,7 +13,7 @@
             android:entryValues="@array/theme_in_memory_values"
             android:key="theme_key"
             android:title="@string/chose_theme"
-            android:icon="@drawable/ic_theme"
+            android:icon="@drawable/ic_theme_icon"
             android:summary=""
             app:useSimpleSummaryProvider="true"/>
     </PreferenceCategory>

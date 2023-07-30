@@ -13,5 +13,6 @@
     <string name="chose_theme">Выбрать тему</string>
     <string name="text_settings">Настройкт текта</string>
     <string name="choose_text_size">Выбрать размер шрифта</string>
-
+    <string name="purchase">Покупка</string>
+    <string name="shopping_list">Список покупок</string>
 </resources>

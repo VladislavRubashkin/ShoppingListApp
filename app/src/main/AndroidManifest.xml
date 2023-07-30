@@ -18,10 +18,12 @@
             android:label="@string/settings" />
         <activity
             android:name=".presentation.screens.ShopItemActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/purchase"/>
         <activity
             android:name=".presentation.screens.ListShopItemActivity"
-            android:exported="true">
+            android:exported="true"
+            android:label="@string/shopping_list">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

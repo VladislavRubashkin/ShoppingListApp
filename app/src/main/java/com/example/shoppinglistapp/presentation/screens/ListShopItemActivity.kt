@@ -28,16 +28,18 @@ class ListShopItemActivity : AppCompatActivity() {
 
     private lateinit var listShopItemAdapter: ListShopItemAdapter
     private lateinit var textSizePreference: SharedPreferences
-    private lateinit var themePreference: SharedPreferences
+    private val themePreference by lazy {
+        PreferenceManager.getDefaultSharedPreferences(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityListShopItemBinding.inflate(layoutInflater)
-        initPref()
+
         setTheme(ThemeChangeObject.getSelectedThem(themePreference))
 
         setContentView(binding.root)
-        Log.d("pref","$themePreference")
+        initPref()
         getShopItemList()
         addShopItem()
         setupSettings()
@@ -51,7 +53,7 @@ class ListShopItemActivity : AppCompatActivity() {
 
     private fun initPref() {
         textSizePreference = PreferenceManager.getDefaultSharedPreferences(this)
-        themePreference = PreferenceManager.getDefaultSharedPreferences(this)
+//        themePreference = PreferenceManager.getDefaultSharedPreferences(this)
     }
 
     private fun getShopItemList() {
