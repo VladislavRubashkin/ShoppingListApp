@@ -7,8 +7,8 @@
     </string-array>
 
     <string-array name="theme_in_memory_values">
-        <item>Light</item>
-        <item>Dark</item>
+        <item>#0EA628</item>
+        <item>#5C5C9A</item>
     </string-array>
 
     <string-array name="text_size_array">

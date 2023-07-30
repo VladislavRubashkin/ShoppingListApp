@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Список покупок</string>
+    <string name="add_new_shop_item">Добавить новый элемент</string>
+    <string name="hint_name">Название:</string>
+    <string name="hint_number">Количество:</string>
+    <string name="button_save">Сохранить</string>
+    <string name="error_input_count">Ошибка ввода количества</string>
+    <string name="error_input_name">Ошибка ввода названия</string>
+    <string name="settings">Настройки</string>
+
+    <string name="general">Общие</string>
+    <string name="chose_theme">Выбрать тему</string>
+    <string name="text_settings">Настройкт текта</string>
+    <string name="choose_text_size">Выбрать размер шрифта</string>
+    <string name="purchase">Покупка</string>
+    <string name="shopping_list">Список покупок</string>
+</resources>

@@ -1,10 +1,19 @@
 package com.example.shoppinglistapp.presentation.screens
 
+import android.content.SharedPreferences
+import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
+import androidx.preference.ListPreference
+import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.PreferenceManager
 import com.example.shoppinglistapp.R
+import java.util.prefs.Preferences
+
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -28,8 +37,13 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {
+
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
+
         }
+
+
+
     }
 }
